@@ -2,7 +2,7 @@
 """
 Created on Sat May  4 17:20:05 2019
 
-@author: farukkutlu
+@auth farukkutlu
 """
 import pandas as pd
 import numpy as np
@@ -59,6 +59,6 @@ def plot_path(path):
 
 shortest_path = get_path(distances, 81)
 total_length = get_path_length(shortest_path)
-print(total_length)
+print()
+print(str(total_length) + 'km calculated for the path.')
 plot_path(shortest_path)
-
