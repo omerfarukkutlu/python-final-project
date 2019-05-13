@@ -132,15 +132,17 @@ def genetic_algorithm(n, n_pop, n_gen, mut_chance):
         elites, pool = selection(pop, fit, m)
         pop, fit, avg_fit = breed(elites, pool, mut_chance)
         avg_fitnesses.append(avg_fit)
+        if (i+1)%10 == 0:
+            print(str(i+1) + 'th generation complete.')  
     sort_pop = [(x,y) for x,y in reversed(sorted(zip(fit, pop)))]
     return sort_pop[0], pop, fit, np.array(avg_fitnesses)
 
 """    The inputs of the program are entered below.    """
 
 # For all cities, n = coordinates.shape[0]
-n = 81              # Number of cities starting prom plate number 01 (Adana)
-pop_size = 2000      # Number of the paths in populations.
-gnr_no = 1100        # number of generations to terminate the program
+n = 81              # Number of cities starting from plate number 01 (Adana)
+pop_size = 200     # Number of the paths in populations.
+gnr_no = 1000       # number of generations to terminate the program
 mut_chn = 0.05      # mutation occurance chance
 # Calling the main function (genetic_algorithm)
 first, pop, fit, avg_fit = genetic_algorithm(n, pop_size, gnr_no, mut_chn)
@@ -160,6 +162,6 @@ gen_count = np.arange(1, gnr_no+1, 1)
 plt.figure(figsize=(6,6))
 plt.plot(gen_count, 1e6/avg_fit, '-')
 plt.title('Generations vs Total Distance', loc='center', fontsize=15)
-plt.ylabel('Total Distance', fontsize=12)
+plt.ylabel('Total Distance (km)', fontsize=12)
 plt.xlabel('Generation', fontsize=12)
 plt.show()
